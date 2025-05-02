@@ -108,10 +108,9 @@ const Start = () => {
                     <span>{name}</span>
                     <span
                       onClick={() => {
-                        const newList = [...candidates];
-                        const i = newList.indexOf({ name, info });
-                        newList.splice(i, 1);
-
+                        const newList = candidates.filter(
+                          (candidate) => candidate.name !== name
+                        );
                         setCandidates(newList);
                       }}
                       className="remove"
@@ -124,44 +123,42 @@ const Start = () => {
             ) : null}
 
             <div className="input-container">
-              <div className="add-candidate-wrapper">
-                <input
-                  type="text"
-                  placeholder="Add Candidate"
-                  ref={candidateField}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                />
-
-                <button
-                  className=""
-                  type="button"
-                  onClick={() => {
-                    const newCandidate = { name, info };
-                    setCandidates([...candidates, newCandidate]);
-                    if (candidateField.current)
-                      candidateField.current.value = "";
-                    if (candidateInfoField.current)
-                      candidateInfoField.current.value = "";
-                  }}
-                >
-                  Add
-                </button>
-              </div>
+              <input
+                type="text"
+                placeholder="Add Candidate"
+                ref={candidateField}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </div>
 
             <div className="input-container">
-              <div className="add-candidate-wrapper">
-                <input
-                  type="text"
-                  placeholder="Candidate Info"
-                  ref={candidateInfoField}
-                  onChange={(e) => {
-                    setInfo(e.target.value);
-                  }}
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Candidate Info"
+                ref={candidateInfoField}
+                onChange={(e) => {
+                  setInfo(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="input-container">
+              <button
+                className=""
+                type="button"
+                onClick={() => {
+                  const newCandidate = { name, info };
+                  setCandidates([...candidates, newCandidate]);
+                  if (candidateField.current)
+                    candidateField.current.value = "";
+                  if (candidateInfoField.current)
+                    candidateInfoField.current.value = "";
+                }}
+              >
+                Add
+              </button>
             </div>
 
             <button className="login-button button-primary" type="submit">

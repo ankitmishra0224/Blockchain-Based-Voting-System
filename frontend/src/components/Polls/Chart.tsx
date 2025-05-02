@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "../../axios";
 
 interface ChartProps {
@@ -74,7 +73,7 @@ const Chart = (props: ChartProps) => {
         <div key={name} className="bar-wrapper">
           <div
             style={{
-              height: count != 0 ? `${(count * 100) / total}%` : "auto",
+              height: count !== 0 ? `${(count * 100) / total}%` : "auto",
               border: "2px solid #4daaa7",
               display: "flex",
               flexDirection: "column",
